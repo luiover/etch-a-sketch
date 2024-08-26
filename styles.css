@@ -7,11 +7,13 @@
 }
 
 #drawing-board {
-  height: 100px;
-  width: 100px;
+  height: 500px;
+  width: 500px;
 
   display: flex;
   flex-direction: column;
+
+  border: 0.1px solid #e9e9e9;
 }
 
 .row {
@@ -22,4 +24,6 @@
 
 .cell {
   flex: 1;
+
+  border: 0.1px solid #e9e9e9;
 }
