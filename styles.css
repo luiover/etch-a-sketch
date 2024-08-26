@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#drawing-board {
+  height: 100px;
+  width: 100px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  flex: 1;
+
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+}
