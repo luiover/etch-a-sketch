@@ -12,6 +12,8 @@ You can do multiple things, like
 # Check it out!
 [See the live demo here!](https://luiover.github.io/etch-a-sketch)
 
+The page might overflow so you'll have to scroll to the bottom but this is GitHub's fault 😭
+
 # The back-stage
 With this project, I demonstrate my abilities of
 - Using Git
