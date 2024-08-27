@@ -5,11 +5,16 @@ You can do multiple things, like
 - Change the brush size
 - Draw random colors
 - Draw with a brush (darkening effect)
+- Draw with a pencil
+- Eraser tool
 - Erase the whole page
+
+# Check it out!
+[See the live demo here!](https://luiover.github.io/etch-a-sketch)
 
 # The back-stage
 With this project, I demonstrate my abilities of
-- Using Git and commits
+- Using Git
 - Writing HTML in a semantical way
 - Customizing CSS styles
 - JavaScript abilities like
