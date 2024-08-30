@@ -8,7 +8,7 @@ const sideButtonsContainer = document.querySelector('.side-buttons');
 
 let cellsPerRow = 24;
 let drawMethod = 'on-hover';
-let brushColor = 'rgb(211,210,0)';
+let brushColor = `rgb(${color},${color},${color})`;
 let isDrawing = false; // Track whether the mouse button is held down
 let lastDiv;
 let darkening = false;
@@ -49,9 +49,11 @@ sideButtonsContainer.addEventListener('click', (e) => {
       createGrid(cellsPerRow);
       break;
     case 'brush-tool':
+      brushColor = `rgb(${color},${color},${color})`;
       darkening = true;
       break;
     case 'pencil-tool':
+      brushColor = `rgb(${color},${color},${color})`;
       darkening = false;
       break;
   }
