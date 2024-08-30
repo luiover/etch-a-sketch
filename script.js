@@ -1,11 +1,61 @@
 const drawOptions = document.querySelector('#draw-options');
+const gridSizeButtons = document.querySelectorAll('button.grid-size');
+const colorPicker = document.querySelector('.color-picker');
+const resetGridBtn = document.querySelector('#reset-grid');
+const rainbowBtn = document.querySelector('#rainbow');
+const eraser = document.querySelector('#eraser');
+const sideButtonsContainer = document.querySelector('.side-buttons');
 
-let cellsPerRow = 25;
+let cellsPerRow = 24;
 let drawMethod = 'on-hover';
-let brushColor = 'red';
+let brushColor = 'rgb(211,210,0)';
 let isDrawing = false; // Track whether the mouse button is held down
+let lastDiv;
+let darkening = false;
 
 createGrid(cellsPerRow);
+
+gridSizeButtons.forEach((button) => {
+  function changeGrid() {
+    const drawingBoardRows = document.querySelectorAll('#drawing-board>.row');
+    drawingBoardRows.forEach((row) => row.remove());
+
+    cellsPerRow = Number(button.textContent.substring(0, 2));
+    createGrid(cellsPerRow);
+  }
+
+  button.addEventListener('click', changeGrid);
+});
+
+colorPicker.addEventListener('input', (e) => {
+  const color = String(colorPicker.value);
+  brushColor = `rgb(${color},${color},${color})`;
+});
+
+sideButtonsContainer.addEventListener('click', (e) => {
+  const target = e.target;
+
+  switch (target.id) {
+    case 'eraser':
+      brushColor = 'none';
+      break;
+    case 'rainbow':
+      brushColor = () => `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+      break;
+    case 'reset-grid':
+      const drawingBoardRows = document.querySelectorAll('#drawing-board>.row');
+      drawingBoardRows.forEach((row) => row.remove());
+
+      createGrid(cellsPerRow);
+      break;
+    case 'brush-tool':
+      darkening = true;
+      break;
+    case 'pencil-tool':
+      darkening = false;
+      break;
+  }
+});
 
 function createGrid(rowCells) {
   const drawingBoard = document.querySelector('#drawing-board');
@@ -78,6 +128,41 @@ function createGrid(rowCells) {
 }
 
 function changeColor(cell) {
-  cell.style.backgroundColor = brushColor;
-  cell.style.border = '0.1px solid ' + brushColor;
+  if (cell === lastDiv) {
+    return; // because we already colored this cell
+  }
+
+  lastDiv = cell;
+  let color = brushColor;
+  if (typeof brushColor === 'function') {
+    color = brushColor();
+  }
+
+  if (brushColor === 'none') {
+    cell.style.backgroundColor = 'white';
+    return (cell.style.border = '0.1px solid #e9e9e9');
+  }
+
+  if (darkening) {
+    let currentOpacity = Number(cell.style.opacity);
+    let currentColor = String(cell.style.backgroundColor).replace(/\s/g, '');
+
+    if (currentColor === color && currentOpacity === 1) {
+      return;
+    } else {
+    }
+    if (currentOpacity === 1 && currentColor === color) {
+      return;
+    } else if (currentOpacity === 1 && currentColor !== color) {
+      cell.style.opacity = '0.1';
+    } else {
+      currentOpacity += 0.1;
+      cell.style.opacity = String(currentOpacity);
+    }
+  } else {
+    cell.style.opacity = 1;
+  }
+
+  cell.style.backgroundColor = color;
+  cell.style.border = '0.1px solid ' + color;
 }
