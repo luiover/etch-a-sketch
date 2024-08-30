@@ -13,12 +13,41 @@
     <script defer src="script.js"></script>
   </head>
   <body>
-    <div id="drawing-board"></div>
-    <form id="draw-options">
-      <input type="radio" id="on-hover" name="draw-method" value="on-hover" checked />
-      <label for="on-hover">On hover</label>
-      <input type="radio" id="while-pressing" name="draw-method" value="while-pressing" />
-      <label for="while-pressing">While pressing</label>
-    </form>
+    <div class="side-buttons">
+      <h1 class="side-header">Draw settings</h1>
+      <div class="change-color">
+        <label class="color-header">Color</label>
+        <input type="range" min="0" max="255" step="1" class="color-picker" name="drawing-color" value="#A2A597" />
+      </div>
+      <div class="group">
+        <button class="side-button" id="brush-tool">Brush</button>
+        <button class="side-button" id="pencil-tool">Pencil</button>
+      </div>
+      <button class="side-button" id="eraser">Eraser</button>
+      <button class="side-button" id="rainbow">Rainbow mode</button>
+      <button class="side-button" id="reset-grid">Reset</button>
+    </div>
+    <div class="central-row">
+      <div id="drawing-board"></div>
+      <div id="grids-container">
+        <button class="grid-size">16x16</button>
+        <button class="grid-size">24x24</button>
+        <button class="grid-size">32x32</button>
+        <button class="grid-size">48x48</button>
+      </div>
+      <form id="draw-options">
+        <label id="header-label">Draw</label>
+        <label for="on-hover" id="hover-label" class="radio">
+          <input type="radio" id="on-hover" name="draw-method" value="on-hover" checked />
+          On hover
+          <span class="checkmark"></span>
+        </label>
+        <label for="while-pressing" id="pressing-label" class="radio">
+          <input type="radio" id="while-pressing" name="draw-method" value="while-pressing" />
+          While pressing
+          <span class="checkmark"></span>
+        </label>
+      </form>
+    </div>
   </body>
 </html>
