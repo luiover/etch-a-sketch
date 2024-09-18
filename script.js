@@ -8,7 +8,7 @@ const sideButtonsContainer = document.querySelector('.side-buttons');
 
 let cellsPerRow = 24;
 let drawMethod = 'on-hover';
-let brushColor = `rgb(${color},${color},${color})`;
+let brushColor = `rgb(0,0,0)`;
 let isDrawing = false; // Track whether the mouse button is held down
 let lastDiv;
 let darkening = false;
